@@ -8,6 +8,11 @@ public class AssetLoader {
     public AssetLoader(){
         try {
             bg = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\BG.jpg"));
+            player = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\player.jpg"));
+            enemy1 = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\enemy1.jpg"));
+            enemy2 = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\enemy2.jpg"));
+            pickup = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\pickup.jpg"));
+            wall1 = ImageIO.read(new File("C:\\Users\\Rufus\\IdeaProjects\\Java2017_2018\\PO\\wall1.jpg"));
         } catch (IOException e) {
             e.printStackTrace();
         }

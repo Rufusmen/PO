@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUI extends JFrame{
     private JPanel root;
@@ -18,7 +20,15 @@ public class GUI extends JFrame{
         restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                lvl = 1;
+                ((Board)board).restart();
+            }
+        });
+        board.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                super.keyPressed(e);
+                if(((Board)board).move(e.getKeyCode()))lvl++;
             }
         });
     }
