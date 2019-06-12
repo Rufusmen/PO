@@ -4,4 +4,6 @@ public class Player extends Actor {
         super();
         img = AssetLoader.player;
     }
+
+
 }

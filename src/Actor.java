@@ -7,6 +7,12 @@ public class Actor {
         img = null;
     }
 
+    public boolean isPickup(){return false;}
+
+    public boolean isHitable(){return false;}
+
+    public boolean hit(){return false;}
+
     public void draw(Graphics g, int y, int x){
         if(img!=null)g.drawImage(img, x*64, y*64, null);
     }
