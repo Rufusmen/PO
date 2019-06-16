@@ -19,15 +19,12 @@ public class GUI extends JFrame{
         lvl = 1;
         setContentPane(root);
         lvlLabel.setText("LVL : " + lvl);
-        restart.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                lvl = 1;
-                ((Board)board).restart(lvl);
-                ((Board)board).hp = 100;
-                lvlLabel.setText("LVL : " + lvl);
-                hpLabel.setText("HP : " + 100);
-            }
+        restart.addActionListener(e -> {
+            lvl = 1;
+            ((Board)board).restart(lvl);
+            ((Board)board).hp = 100;
+            lvlLabel.setText("LVL : " + lvl);
+            hpLabel.setText("HP : " + 100);
         });
         board.addKeyListener(new KeyAdapter() {
             @Override
@@ -42,6 +39,7 @@ public class GUI extends JFrame{
             }
         });
     }
+
 
     private void createUIComponents() {
         board = new Board();

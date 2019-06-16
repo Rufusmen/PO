@@ -1,10 +1,13 @@
 import java.util.Random;
 
-public class Enemy extends Actor {
+public class Enemy extends Actor{
     private int type,hp;
+
+    public boolean moved;
 
     public Enemy(){
         super();
+        moved = false;
         type = new Random().nextInt(2);
         if(type == 0){
             img = AssetLoader.enemy1;
@@ -18,6 +21,11 @@ public class Enemy extends Actor {
 
     @Override
     public boolean isHitable() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnemy() {
         return true;
     }
 

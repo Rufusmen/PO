@@ -6,4 +6,8 @@ public class Player extends Actor {
     }
 
 
+    @Override
+    public boolean hit() {
+        return false;
+    }
 }

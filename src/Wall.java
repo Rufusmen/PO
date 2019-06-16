@@ -1,4 +1,4 @@
-public class Wall extends Actor {
+public class Wall extends Actor{
 
     private int hp;
 

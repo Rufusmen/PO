@@ -9,4 +9,9 @@ public class PickUP extends Actor {
     public boolean isPickup() {
         return true;
     }
+
+    @Override
+    public boolean hit() {
+        return false;
+    }
 }
