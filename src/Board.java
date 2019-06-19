@@ -1,8 +1,11 @@
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Random;
 
 public class Board extends JPanel implements ActionListener {
@@ -61,11 +64,15 @@ public class Board extends JPanel implements ActionListener {
         generateMap(lvl);
     }
 
-    private void movePlayer(int x,int y){
+    private void movePlayer(int x,int y) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
         if(x<0||y<0||x>7||y>7) return;
         hp--;
         if(map[x][y]==null || map[x][y].isPickup()){
-            if(map[x][y]!= null)hp+=10;
+            if(map[x][y]!= null){
+
+                AssetLoader.playPick();
+                hp+=10;
+            }
             map[x][y] = map[pos_x][pos_y];
             map[pos_x][pos_y] = null;
             pos_x = x;
@@ -82,7 +89,7 @@ public class Board extends JPanel implements ActionListener {
         }
     }
 
-    private void moveEnemy(int i,int j,int x,int y){
+    private void moveEnemy(int i,int j,int x,int y) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
         if(map[x][y]==null||map[x][y].isPickup()){
             map[x][y] = map[i][j];
             map[i][j] = null;
@@ -102,7 +109,7 @@ public class Board extends JPanel implements ActionListener {
         return (x==pos_x && (y == pos_y-1 || y == pos_y+1)) || (y == pos_y && (x==pos_x-1 || x == pos_x+1));
     }
 
-    private void enemyAI(){
+    private void enemyAI() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
         for (int i = 0;i<8;i++)
             for(int j=0;j<8;j++){
                 if(map[i][j]!=null && map[i][j].isEnemy() && !((Enemy)map[i][j]).moved){
@@ -133,7 +140,7 @@ public class Board extends JPanel implements ActionListener {
         repaint();
     }
 
-    public boolean move(int key){
+    public boolean move(int key) throws IOException, LineUnavailableException, UnsupportedAudioFileException {
         if(hp<=0)return false;
         switch (key){
             case KeyEvent.VK_DOWN : movePlayer(pos_x+1,pos_y); break;

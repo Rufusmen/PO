@@ -1,3 +1,8 @@
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
 import java.util.Random;
 
 public class Enemy extends Actor{
@@ -7,6 +12,7 @@ public class Enemy extends Actor{
 
     public Enemy(){
         super();
+        onAction = AssetLoader.enemyHit;
         moved = false;
         type = new Random().nextInt(2);
         if(type == 0){
@@ -30,7 +36,10 @@ public class Enemy extends Actor{
     }
 
     @Override
-    public boolean hit() {
+    public boolean hit() throws IOException, LineUnavailableException, UnsupportedAudioFileException {
+        Clip clip = AudioSystem.getClip();
+        clip.open(AudioSystem.getAudioInputStream(onAction));
+        clip.start();
         hp--;
         if(hp==0)return true;
         else return false;

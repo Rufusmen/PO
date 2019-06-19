@@ -1,8 +1,11 @@
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class GUI extends JFrame{
     private JPanel root;
@@ -30,9 +33,17 @@ public class GUI extends JFrame{
             @Override
             public void keyPressed(KeyEvent e) {
                 super.keyPressed(e);
-                if(((Board)board).move(e.getKeyCode())){
-                    lvl++;
-                    ((Board)board).restart(lvl);
+                try {
+                    if(((Board)board).move(e.getKeyCode())){
+                        lvl++;
+                        ((Board)board).restart(lvl);
+                    }
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (LineUnavailableException e1) {
+                    e1.printStackTrace();
+                } catch (UnsupportedAudioFileException e1) {
+                    e1.printStackTrace();
                 }
                 lvlLabel.setText("LVL : " + lvl);
                 hpLabel.setText("HP : " + ((Board)board).hp);
