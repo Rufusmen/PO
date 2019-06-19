@@ -74,7 +74,11 @@ public class Board extends JPanel implements ActionListener {
         }
         if(map[x][y].isHitable()){
             boolean dead = map[x][y].hit();
-            if(dead)map[x][y] = null;
+            if(dead){
+                Random r = new Random();
+                if(r.nextInt(10)<=2)map[x][y] = new PickUP();
+                else map[x][y] = null;
+            }
         }
     }
 
@@ -86,7 +90,11 @@ public class Board extends JPanel implements ActionListener {
         }
         if(map[x][y].isHitable() && !map[x][y].isEnemy()){
             boolean dead = map[x][y].hit();
-            if(dead)map[x][y] = null;
+            if(dead){
+                Random r = new Random();
+                if(r.nextInt(10)<=1)map[x][y] = new PickUP();
+                else map[x][y] = null;
+            }
         }
     }
 
